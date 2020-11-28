@@ -9,8 +9,12 @@ function getAllCountries() {
 
   fetch(url).then(response => {
 
-    response.json().then(data => {
-      console.log(data);
+    const json = response.json().then(data => {
+
+      console.log(data[1]);
+      console.log(data[2]);
+      console.log(data[3]);
+
     }).catch(error => console.log(error));
   }).catch(error => console.log(error));
 
