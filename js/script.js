@@ -31,11 +31,88 @@ function getAllCountries() {
 
     const json = response.json().then(data => {
 
-      console.log(data[1]);
-      console.log(data[2]);
-      console.log(data[3]);
+      // Map no json para montar um novo objeto com id, nome, população, imagem
+
+      // TO DO: Destructing: melhorar escrita. country é comum em todos os itens
+      // TO DO: aysnc/await
+
+      allCountries = data.map(country => {
+        return {
+          id: country.numericCode,
+          name: country.translations.br,
+          population: country.population,
+          flag: country.flag
+        }
+      });
+
+      console.log(allCountries)
+
+      populateData();
 
     }).catch(error => console.log(error));
   }).catch(error => console.log(error));
 
+}
+
+function populateData() {
+  populateListAllCountries();
+  populateListFavoriteCountries();
+
+  // Quantidade de população e países
+
+  getAllCounts();
+  clickButtons();
+}
+
+function populateListAllCountries() {
+
+  let countriesHTML = "" 
+
+  // For each - all countries
+
+  allCountries.forEach(country => {
+
+    // TO DO: Destructing
+
+    // Criar elementos: button, dados (bandeira, nome, população)
+
+    // Criar div container para estilizar posteriormente
+
+    // Id button = id elemento
+
+    const dataListHTML = `
+    <div class='container-data'>
+    <div id="${country.id}" class='button-add'>+</div>
+    <div class='image-country'><img src="${country.flag}" alt="${country.name}"></div>
+    <div class='list'>
+    <ul>
+      <li>${country.name}</li>
+      <li>${country.population}</li>
+    </ul>
+    </div> 
+    </div>`
+
+    // Receber todas as divs criadas
+
+    countriesHTML += dataListHTML;
+
+    })
+
+    // Mostrar dados no HTML
+
+    listCountries.innerHTML = countriesHTML;
+    console.log(listCountries);
+
+}
+
+function populateListFavoriteCountries() {
+  
+}
+
+function getAllCounts() {
+  
+}
+
+function clickButtons() {
+  
 }
