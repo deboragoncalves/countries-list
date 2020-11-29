@@ -23,14 +23,21 @@
   align-items: center;  
 }
 
-.button-add {
+.button-add, .button-remove {
   width: 30px;
   height: 30px;
-  background-color: green;
   color: white;
   border-radius: 20%;
-  border-color: none;
+  border: none;
   margin-right: 15px;
+}
+
+.button-add {
+  background-color: green;
+}
+
+.button-remove {
+  background-color: red;
 }
 
 img {

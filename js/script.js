@@ -81,16 +81,16 @@ function populateListAllCountries() {
     // Id button = id elemento
 
     const dataListHTML = `
-    <div class="container-data">
-    <div><button id="${country.id}" class='button-add'>+</button></div>
-    <div class='image-country'><img src="${country.flag}" alt="${country.name}"></div>
-    <div class='list'>
-    <ul>
-      <li>${country.name}</li>
-      <li>${country.population}</li>
-    </ul>
-    </div>
-    </div>`
+      <div class="container-data">
+        <div><button id="${country.id}" class='button-add'>+</button></div>
+        <div class='image-country'><img src="${country.flag}" alt="${country.name}"></div>
+        <div class='list'>
+        <ul>
+          <li>${country.name}</li>
+          <li>${country.population}</li>
+        </ul>
+        </div>
+      </div>`
 
     // Receber todas as divs criadas
 
@@ -105,11 +105,52 @@ function populateListAllCountries() {
 }
 
 function populateListFavoriteCountries() {
+
+  let favoritesHTML = "" 
+
+  favoriteCountries.forEach(favoriteCountry => {
+
+    const dataListHTML = `
+      <div class="container-data">
+        <div><button id="${favoriteCountry.id}" class='button-remove'>-</button></div>
+        <div class='image-country'><img src="${favoriteCountry.flag}" alt="${favoriteCountry.name}"></div>
+        <div class='list'>
+        <ul>
+          <li>${favoriteCountry.name}</li>
+          <li>${favoriteCountry.population}</li>
+        </ul>
+        </div>
+      </div>`
+
+    // Receber todas as divs criadas
+
+    favoritesHTML += dataListHTML;
+
+  })
+
+  listFavoriteCountries.innerHTML = favoritesHTML
+
   
 }
 
 function getAllCounts() {
-  
+  numberAllCountries.textContent = allCountries.length
+  numberAllFavoriteCountries.textContent = favoriteCountries.length
+
+  // Reduce: somatório. Callback com 2 params: variável somatorio e objeto atual. Valor inicial: 0
+
+  const totalPopulation= allCountries.reduce((totalSum, current) => {
+    return totalSum + current.population;
+  }, 0);
+
+  populationAllCountries.textContent = totalPopulation;
+
+  const totalFavorites = favoriteCountries.reduce((totalSum, current) => {
+    return totalSum + current.population;
+  }, 0);
+
+  populationFavoriteCountries.textContent = totalFavorites;
+
 }
 
 function clickButtons() {
