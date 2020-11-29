@@ -154,5 +154,51 @@ function getAllCounts() {
 }
 
 function clickButtons() {
-  
+
+  // Array com todos os botões
+
+  const contriesButtons = Array.from(listCountries.querySelectorAll('.button-add'))
+  const favoriteButtons = Array.from(listCountries.querySelectorAll('.button-remove'))
+
+  // For each: detectar click, chamar função passando id.
+
+  contriesButtons.forEach(button => {
+
+    button.addEventListener('click', () => addToFavorites(button.id))
+  })
+
+  favoriteButtons.forEach(button => {
+
+    button.addEventListener('click', () => removeFromFavorites(button.id))
+  })
+
+}
+
+function addToFavorites(id) {
+
+ // Pegar pais e incluir na lista de favoritos (spread)
+
+ // Find: traz o elemento (objeto), cujo id é igual ao id do botão clicado
+
+ const newCountry = allCountries.find(country => country.id === id);
+
+ favoriteCountries = [...favoriteCountries, newCountry]
+
+ // Ordem alfabética
+
+ favoriteCountries.sort((a, b) => {
+   return a.name.localeCompare(b.name);
+ })
+
+ // Remover da lista original: filter. Compara os ids, se for diferente do id atual, mantém.
+
+ allCountries = allCountries.filter(country => country.id !== id)
+
+ // Popular listas
+
+ populateData();
+}
+
+function removeFromFavorites(id) {
+
 }
