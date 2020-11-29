@@ -81,15 +81,15 @@ function populateListAllCountries() {
     // Id button = id elemento
 
     const dataListHTML = `
-    <div class='container-data'>
-    <div id="${country.id}" class='button-add'>+</div>
+    <div class="container-data">
+    <div><button id="${country.id}" class='button-add'>+</button></div>
     <div class='image-country'><img src="${country.flag}" alt="${country.name}"></div>
     <div class='list'>
     <ul>
       <li>${country.name}</li>
       <li>${country.population}</li>
     </ul>
-    </div> 
+    </div>
     </div>`
 
     // Receber todas as divs criadas
@@ -101,7 +101,6 @@ function populateListAllCountries() {
     // Mostrar dados no HTML
 
     listCountries.innerHTML = countriesHTML;
-    console.log(listCountries);
 
 }
 
