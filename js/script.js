@@ -158,7 +158,7 @@ function clickButtons() {
   // Array com todos os botões
 
   const contriesButtons = Array.from(listCountries.querySelectorAll('.button-add'))
-  const favoriteButtons = Array.from(listCountries.querySelectorAll('.button-remove'))
+  const favoriteButtons = Array.from(listFavoriteCountries.querySelectorAll('.button-remove'))
 
   // For each: detectar click, chamar função passando id.
 
@@ -201,4 +201,20 @@ function addToFavorites(id) {
 
 function removeFromFavorites(id) {
 
+    // Pegar pais, adicionar na lista de paises e excluir dos favoritos
+
+    const deleteCountry = favoriteCountries.find(country => country.id === id);
+
+    allCountries = [...allCountries, deleteCountry]
+    
+    allCountries.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    })
+    
+    favoriteCountries = favoriteCountries.filter(country => country.id !== id)
+    
+    populateData();
+
 }
+
+// TO DO: formatar numeros
